@@ -37,8 +37,8 @@ const CharacterList = () => {
   }, []);
 
   const handleCharacterPress = (character) => {
-    // Navegar para a tela de detalhes com o personagem selecionado
-    navigation.navigate('CharacterDetail', { character });
+    // Navegar para a tela de detalhes com o ID do personagem selecionado
+    navigation.navigate('CharacterDetail', { characterId: character.id });
   };
 
   const renderItem = ({ item }) => (
