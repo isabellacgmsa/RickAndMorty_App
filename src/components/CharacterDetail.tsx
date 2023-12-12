@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { SharedElement } from 'react-navigation-shared-element';
+import { Colors } from '../styles/styles';
+
 
 const CharacterDetailScreen = ({ route }) => {
   const { characterId } = route.params;
@@ -20,6 +22,7 @@ const CharacterDetailScreen = ({ route }) => {
             image
             status
             species
+            gender
           }
         }
       `;
@@ -81,6 +84,8 @@ const CharacterDetailScreen = ({ route }) => {
       </SharedElement>
       <Text>Status: {character.status}</Text>
       <Text>Species: {character.species}</Text>
+      <Text>Gender: {character.gender}</Text>
+
     </View>
   );
 };
@@ -103,6 +108,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 8,
+    color: Colors.primary
+
   },
 });
 
