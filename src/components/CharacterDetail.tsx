@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import axios, { AxiosError } from 'axios';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const CharacterDetailScreen = ({ route }) => {
   const { characterId } = route.params;
@@ -54,7 +55,6 @@ const CharacterDetailScreen = ({ route }) => {
 
     fetchCharacterDetails();
   }, [characterId]);
-
   if (error) {
     return (
       <View style={styles.container}>
@@ -73,14 +73,18 @@ const CharacterDetailScreen = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: character.image }} style={styles.characterImage} />
-      <Text style={styles.characterName}>{character.name}</Text>
+      <SharedElement id={`item.${characterId}.image`} style={styles.characterImage}>
+        <Image source={{ uri: character.image }} style={styles.characterImage} />
+      </SharedElement>
+      <SharedElement id={`item.${characterId}.name`}>
+        <Text style={styles.characterName}>{character.name}</Text>
+      </SharedElement>
       <Text>Status: {character.status}</Text>
       <Text>Species: {character.species}</Text>
-      {/* Adicione mais informações conforme necessário */}
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
